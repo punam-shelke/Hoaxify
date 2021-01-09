@@ -85,3 +85,8 @@ so the next test will not be affected by the changed data.
 - :bulb: `⌘ + ⇧ + V` gives option to paste from history
 
 - to get the response from the endpoint we can use ``response.getbody()`` method.
+
+### Jackson
+- It is responsible when java object is converted to JSON string or creating an instance of java object based on JSON string.
+- It requires java class to have constructor with no arguments.
+- lombok annotation `@NoArgsConstructor` creates default constructor

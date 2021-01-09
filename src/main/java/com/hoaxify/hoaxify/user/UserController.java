@@ -15,8 +15,6 @@ public class UserController {
     @PostMapping("/api/1.0/users")
     GenericResponse createUser(@RequestBody User user) {
         userService.save(user);
-        GenericResponse body = new GenericResponse();
-        body.setMessage("User saved");
-        return body;
+        return new GenericResponse("User saved");
     }
 }
