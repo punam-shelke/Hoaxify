@@ -58,17 +58,20 @@ To achieve it we use
 
 
 -`@Service` annotation is used in service classes.
-  - with this annotation we are telling spring to initialise this class. 
+  - with this annotation we are telling spring to initialise this class.
   - we should use A constructor injection which is easy to test
 
 
-- at controller level we an use field injection
-  - `@RequestBody` tells that we want request body of incoming message. and we define what type of object we are waiting for.
+- :bulb: **constructor injection does not need `@Autowired` annotation**
+
+
+- at controller level we can use field injection
+  - `@RequestBody` tells that we want request body of incoming message and also we define what type of object we are waiting for.
   - Spring will take incoming json and convert into user object.
 ```
 eg. @RequestBody User user
 ```
-- for these convertions spring is using jackson library.
+- for these conversions spring is using jackson library.
 
 ### TDD
 - Generally tests run randomly. We can fix the order if we want with @FixedMethodOrder(MethodSorters.<way-of-sorting>)
@@ -78,4 +81,7 @@ eg. @FixedMethodOrder(MethodSorters.NAME_ASCENDING)
 - In TDD each test must run in controlled environment **i.e.** it must start in a non state and return everything to original after test is completed.
 so the next test will not be affected by the changed data.
 
-  
+
+- :bulb: `⌘ + ⇧ + V` gives option to paste from history
+
+- to get the response from the endpoint we can use ``response.getbody()`` method.
