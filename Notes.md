@@ -1,6 +1,6 @@
 # Learning notes while building the application
 
-## Integration Test for User
+## Integration Test for User Controller
 
 - Controller test uses spring context. To achieve that we need  
 `
@@ -90,3 +90,32 @@ so the next test will not be affected by the changed data.
 - It is responsible when java object is converted to JSON string or creating an instance of java object based on JSON string.
 - It requires java class to have constructor with no arguments.
 - lombok annotation `@NoArgsConstructor` creates default constructor
+
+## Hashing Password with h2
+
+### Log in to h2 console
+- enable h2 console and add path by adding configurations in application.yml
+- start the application
+- go to `localhost:8080/path-set-to-h2-in-application.yml`
+- In spring boot 2.3+ jdbc url will be set randomly.
+  - either copy the random url from a console where app is running
+  - or set `spring.datasource.generate-unique-name to false`
+  - default username for h2 is sa and password is empty.
+
+### Encrypt the password using spring security dependencies
+- use postman to test the endpoint 
+- To encrypt the password we can use `BCryptPasswordEncoder` which is part of `spring security dependency`
+- uncomment the spring security dependencies and use `BCryptPasswordEncoder` to hash password while storing in service.  
+
+:bulb:**Note**
+- spring boot does default auto-configuration for spring dependencies.
+- for spring security dependencies the default configuration is **securing all endpoints**.
+```
+i.e. Only authorized requests are processed
+Any request not having authorization header is failed.
+- to avoid this for developement 
+```
+- we can avoid  this by temporarily excluding `SecurityAutoConfiguration.class` from main application.
+
+
+  
