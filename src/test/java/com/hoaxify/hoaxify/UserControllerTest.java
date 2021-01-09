@@ -43,18 +43,20 @@ public class UserControllerTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
+    @Test
+    public void postUser_whenUserIsValid_saveUserToDatabase() {
+        User user = createValidUser();
+
+        testRestTemplate.postForEntity(API_1_0_USERS,user,Object.class);
+
+        assertThat(userRepository.count()).isEqualTo(1);
+    }
+
     private User createValidUser() {
         User user = new User();
         user.setUsername("test-user");
         user.setDisplayName("test-display");
         user.setPassword("P4ssword");
         return user;
-    }
-
-    @Test
-    public void postUser_whenUserIsValid_saveUserToDatabase() {
-        User user = createValidUser();
-        testRestTemplate.postForEntity(API_1_0_USERS,user,Object.class);
-        assertThat(userRepository.count()).isEqualTo(1);
     }
 }
